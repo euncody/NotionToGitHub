@@ -1,7 +1,7 @@
 name: Notion Sync
 
 on:
-  workflow_dispatch: # 수동 실행 버튼
+  workflow_dispatch:
 
 jobs:
   sync:
@@ -14,11 +14,11 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install notion-to-md globally
-        run: npm install -g notion-to-md
+      - name: Install notion-to-md
+        run: npm install notion-to-md
 
       - name: Fetch Notion posts
-        run: notion-to-md -k ${{ secrets.NOTION_API_KEY }} -i 2780d24dfb748022b0f9ca774059605c -o ./_posts
+        run: npx notion-to-md -k ${{ secrets.NOTION_API_KEY }} -i 2780d24dfb748022b0f9ca774059605c -o ./_posts
 
       - name: Commit changes
         run: |
